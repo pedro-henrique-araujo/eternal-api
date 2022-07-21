@@ -25,10 +25,10 @@ namespace Eternal.Api.Controllers
 
 
         [HttpGet("process/{id}")]
-        public async Task<ActionResult<ClientDetailDto>> ProcessAsync([FromRoute] int id)
+        public async Task<ActionResult> ProcessAsync([FromRoute] int id)
         {
-            var output = await _contractService.ProcessAsync(id);
-            return Ok(output);
+            await _contractService.ProcessAsync(id);
+            return Ok();
         }
 
         [HttpGet]

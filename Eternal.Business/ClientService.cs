@@ -42,7 +42,7 @@ namespace Eternal.Business
         public async Task<ClientDetailDto?> UpdateAsync(ClientUpdatingDto updatingDto)
         {
             var repository = _unitOfWork.GetRepository<IRepository<Client>>();
-            var entity = await repository.CreateAsync(updatingDto.Adapt<Client>());
+            var entity = await repository.UpdateAsync(updatingDto.Adapt<Client>());
             return entity?.Adapt<ClientDetailDto>();
         }
 

@@ -1,6 +1,6 @@
 ﻿using Eternal.Models;
 
-namespace Eternal.Business
+namespace Eternal.DataAccess
 {
     public interface IInstalmentRepository
     {

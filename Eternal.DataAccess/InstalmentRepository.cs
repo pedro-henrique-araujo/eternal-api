@@ -2,7 +2,7 @@
 using Eternal.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Eternal.Business
+namespace Eternal.DataAccess
 {
     public class InstalmentRepository : IInstalmentRepository
     {
