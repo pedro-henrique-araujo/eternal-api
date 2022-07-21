@@ -44,7 +44,7 @@ namespace Eternal.Business
         public async Task<ContractDetailDto?> UpdateAsync(ContractUpdatingDto updatingDto)
         {
             var repository = _unitOfWork.GetRepository<IRepository<Contract>>();
-            var entity = await repository.CreateAsync(updatingDto.Adapt<Contract>());
+            var entity = await repository.UpdateAsync(updatingDto.Adapt<Contract>());
             return entity?.Adapt<ContractDetailDto>();
         }
 
