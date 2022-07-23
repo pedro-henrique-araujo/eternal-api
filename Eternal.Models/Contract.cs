@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Eternal.Models
 {
@@ -13,5 +14,7 @@ namespace Eternal.Models
         public int ClientId { get; set; }
 
         public Client? Client { get; set; }
+
+        public List<Instalment>? Instalments { get; set; }
     }
 }

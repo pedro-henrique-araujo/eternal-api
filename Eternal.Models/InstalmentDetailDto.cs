@@ -11,7 +11,5 @@ namespace Eternal.Models
         public decimal Value { get; set; }
 
         public int ContractId { get; set; }
-
-        public Contract? Contract { get; set; }
     }
 }

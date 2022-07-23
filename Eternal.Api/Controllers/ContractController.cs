@@ -22,7 +22,12 @@ namespace Eternal.Api.Controllers
             return Ok(output);
         }
 
-
+        [HttpGet("instalments-pdf/{id}")]
+        public async Task<ActionResult> GetInstalmentsPdf([FromRoute] int id)
+        {
+            var output = await _contractService.GetInstalmentsPdf(id);
+            return File(output, "application/pdf");
+        }
 
         [HttpGet("process/{id}")]
         public async Task<ActionResult> ProcessAsync([FromRoute] int id)

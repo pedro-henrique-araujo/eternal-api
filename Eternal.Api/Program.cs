@@ -21,6 +21,7 @@ builder.Services.AddScoped<IInstalmentRepository, InstalmentRepository>();
 builder.Services.AddScoped<IClientService, ClientService>();
 builder.Services.AddScoped<IContractService, ContractService>();
 builder.Services.AddScoped<IInstalmentService, InstalmentService>();
+builder.Services.AddScoped<IPdfService, PdfService>();
 
 var app = builder.Build();
 
