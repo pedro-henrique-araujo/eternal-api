@@ -1,3 +1,4 @@
+using Eternal.Api;
 using Eternal.Business;
 using Eternal.Data;
 using Eternal.DataAccess;
@@ -7,10 +8,15 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add<AuthorizationFilter>();
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 
 builder.Services.AddDbContext<EternalDbContext>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
