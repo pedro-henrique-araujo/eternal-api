@@ -23,11 +23,28 @@ namespace Eternal.Business
             await _unitOfWork.GetRepository<IRepository<Instalment>>().CreateRangeAsync(instalments);
         }
 
-        public async Task<List<InstalmentDetailDto>> GetForPrintAsync(int id)
+        public async Task<List<InstalmentDetailDto>> GetByContractAsync(int id)
         {
             var repository = _unitOfWork.GetRepository<IInstalmentRepository>();
             var list = await repository.GetByContractIdAsync(id);
             return list.Adapt<List<InstalmentDetailDto>>();
+        }
+
+        public async Task<InstalmentDetailDto> GetByIdAsync(int id)
+        {
+            var repository = _unitOfWork.GetRepository<IRepository<Instalment>>();
+            var instalment = await repository.GetByIdAsync(id);
+            return instalment.Adapt<InstalmentDetailDto>();
+        }
+
+        public async Task<InstalmentDetailDto> PayByIdAsync(int id)
+        {
+            var repository = _unitOfWork.GetRepository<IRepository<Instalment>>();
+            var instalment = await repository.GetByIdAsync(id);
+            if (instalment is null) return null;
+            instalment.InstalmentStatus = InstalmentStatus.Paid;
+            var output = await repository.UpdateAsync(instalment);
+            return output.Adapt<InstalmentDetailDto>();
         }
     }
 }

@@ -4,6 +4,7 @@ namespace Eternal.Business
 {
     public interface IPdfService
     {
-        byte[]? GenerateInstalmentsPdf(ContractDetailDto contract);
+        byte[]? GenerateInstalmentsPdf(Contract contract);
+        byte[]? GenerateContractPdf(Contract contract);
     }
 }

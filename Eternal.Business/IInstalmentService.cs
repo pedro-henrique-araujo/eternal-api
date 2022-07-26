@@ -6,6 +6,10 @@ namespace Eternal.Business
     {
         Task GenerateForAsync(int id);
 
-        Task<List<InstalmentDetailDto>> GetForPrintAsync(int id);
+        Task<List<InstalmentDetailDto>> GetByContractAsync(int id);
+
+        Task<InstalmentDetailDto> GetByIdAsync(int id);
+
+        Task<InstalmentDetailDto> PayByIdAsync(int id);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Eternal.Models
 {
@@ -8,8 +9,7 @@ namespace Eternal.Models
 
         public decimal Value { get; set; }
 
+        [DataType(DataType.Date)]
         public DateTime Expiration { get; set; }
-
-        public Client? Client { get; set; }
     }
 }

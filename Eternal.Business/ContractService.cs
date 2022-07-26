@@ -71,8 +71,17 @@ namespace Eternal.Business
                 c => c.Id == id, 
                 c => c.Include(c => c.Instalments).Include(c => c.Client));
 
-            return _pdfService.GenerateInstalmentsPdf(contract?.Adapt<ContractDetailDto>());
-            
-        }        
+            return _pdfService.GenerateInstalmentsPdf(contract);            
+        }
+
+        public async Task<byte[]?> GetContractPdf(int id)
+        {
+            var repository = _unitOfWork.GetRepository<IRepository<Contract>>();
+            var contract = await repository.GetByPredicateAsync(
+                c => c.Id == id,
+                c => c.Include(c => c.Client));
+
+            return _pdfService.GenerateContractPdf(contract);
+        }
     }
 }

@@ -24,6 +24,7 @@ namespace Eternal.Business
                 instalment.ContractId = contract.Id;
                 instalment.Value = instalmentValue;
                 instalment.Expiration = DateTime.Now.AddMonths(i + 1);
+                instalment.InstalmentStatus = InstalmentStatus.Pending;
                 list.Add(instalment);
             }
 

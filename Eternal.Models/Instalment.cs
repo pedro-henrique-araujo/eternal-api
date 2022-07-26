@@ -13,5 +13,7 @@ namespace Eternal.Models
         public int ContractId { get; set; }
 
         public Contract? Contract { get; set; }
+
+        public InstalmentStatus InstalmentStatus { get; set; }
     }
 }
