@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Eternal.Models
 {
@@ -6,12 +7,13 @@ namespace Eternal.Models
     {
         public int Id { get; set; }
 
+        [DataType(DataType.Date)]
         public DateTime? Expiration { get; set; }
 
         public decimal Value { get; set; }
 
         public int ContractId { get; set; }
 
-        public Contract? Contract { get; set; }
+        public InstalmentStatus InstalmentStatus { get; set; }
     }
 }

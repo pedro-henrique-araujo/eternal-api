@@ -20,6 +20,16 @@ namespace Eternal.DataAccess
             return entity;
         }
 
+        public async Task<T?> GetByPredicateAsync(
+            Expression<Func<T, bool>> wherePredicate, 
+            Func<IQueryable<T>, IQueryable<T>> queryCustomization)
+        {
+            var queryable = _dbContext.Set<T>().Where(wherePredicate);
+            queryable = queryCustomization.Invoke(queryable);
+            var entity = await queryable.FirstOrDefaultAsync();
+            return entity;
+        }
+
         public async Task<List<TReturn>> GetAllAsync<TReturn>(Expression<Func<T, TReturn>> selectExpression)
         {
             var list = await _dbContext.Set<T>()
@@ -84,6 +94,7 @@ namespace Eternal.DataAccess
         public async Task CreateRangeAsync(List<T> entities)
         {
             await _dbContext.Set<T>().AddRangeAsync(entities);
-        }
+            await _dbContext.SaveChangesAsync();
+        }        
     }
 }

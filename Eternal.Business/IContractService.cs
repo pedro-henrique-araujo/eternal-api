@@ -10,5 +10,7 @@ namespace Eternal.Business
         Task<Pagination<ContractPaginationDto>> GetPaginationAsync(int? page = null, string? search = null);
         Task<ContractDetailDto?> UpdateAsync(ContractUpdatingDto updatingDto);
         Task ProcessAsync(int id);
+        Task<byte[]?> GetInstalmentsPdf(int id);
+        Task<byte[]?> GetContractPdf(int id);
     }
 }
