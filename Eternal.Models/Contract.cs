@@ -15,6 +15,11 @@ namespace Eternal.Models
 
         public Client? Client { get; set; }
 
+        public int ContractTemplateId { get; set; }
+
+        public ContractTemplate? ContractTemplate { get; set; }
+
         public List<Instalment>? Instalments { get; set; }
+
     }
 }

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Eternal.Business
 {
-    public class JwtTokenService
+    public class JwtTokenService : IJwtTokenService
     {
         private AppSettings _appSettings;
 
@@ -16,7 +16,7 @@ namespace Eternal.Business
             _appSettings = appSettings.Value;
         }
 
-        public string? GenerateJwtToken(string id)
+        public AuthorizationDto? GenerateJwtToken(string id)
         {
             if (id != _appSettings.Id) return null;
 
@@ -25,13 +25,13 @@ namespace Eternal.Business
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new[] { new Claim("id", _appSettings.Id) }),
-                Expires = DateTime.UtcNow.AddDays(7),
+                Expires = DateTime.UtcNow.AddDays(1),
                 SigningCredentials = new SigningCredentials(
                     new SymmetricSecurityKey(key),
                     SecurityAlgorithms.HmacSha256Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
-            return tokenHandler.WriteToken(token);
+            return new AuthorizationDto(tokenHandler.WriteToken(token));
         }
     }
 }

@@ -4,6 +4,7 @@ using Eternal.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Eternal.Data.Migrations
 {
     [DbContext(typeof(EternalDbContext))]
-    partial class EternalDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220727005826_CreateTableContractTemplate")]
+    partial class CreateTableContractTemplate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,9 +57,6 @@ namespace Eternal.Data.Migrations
                     b.Property<int>("ClientId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ContractTemplateId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("Expiration")
                         .HasColumnType("datetime2");
 
@@ -67,8 +66,6 @@ namespace Eternal.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ClientId");
-
-                    b.HasIndex("ContractTemplateId");
 
                     b.ToTable("Contracts");
                 });
@@ -127,15 +124,7 @@ namespace Eternal.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Eternal.Models.ContractTemplate", "ContractTemplate")
-                        .WithMany("Contracts")
-                        .HasForeignKey("ContractTemplateId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Client");
-
-                    b.Navigation("ContractTemplate");
                 });
 
             modelBuilder.Entity("Eternal.Models.Instalment", b =>
@@ -152,11 +141,6 @@ namespace Eternal.Data.Migrations
             modelBuilder.Entity("Eternal.Models.Contract", b =>
                 {
                     b.Navigation("Instalments");
-                });
-
-            modelBuilder.Entity("Eternal.Models.ContractTemplate", b =>
-                {
-                    b.Navigation("Contracts");
                 });
 #pragma warning restore 612, 618
         }

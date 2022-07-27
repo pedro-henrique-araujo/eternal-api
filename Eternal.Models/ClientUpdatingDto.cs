@@ -5,7 +5,7 @@ namespace Eternal.Models
 {
     public class ClientUpdatingDto
     {
-        [Required, Range(1, (double)decimal.MaxValue)]
+        [Required, Range(1, int.MaxValue)]
         public int Id { get; set; }
 
         [Required, Cpf]

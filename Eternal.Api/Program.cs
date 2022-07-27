@@ -23,11 +23,14 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IRepository<Contract>, Repository<Contract>>();
 builder.Services.AddScoped<IRepository<Client>, Repository<Client>>();
 builder.Services.AddScoped<IRepository<Instalment>, Repository<Instalment>>();
+builder.Services.AddScoped<IRepository<ContractTemplate>, Repository<ContractTemplate>>();
 builder.Services.AddScoped<IInstalmentRepository, InstalmentRepository>();
 builder.Services.AddScoped<IClientService, ClientService>();
 builder.Services.AddScoped<IContractService, ContractService>();
+builder.Services.AddScoped<IContractTemplateService, ContractTemplateService>();
 builder.Services.AddScoped<IInstalmentService, InstalmentService>();
 builder.Services.AddScoped<IPdfService, PdfService>();
+builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
 
 var app = builder.Build();
 

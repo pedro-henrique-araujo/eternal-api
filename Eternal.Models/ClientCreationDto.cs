@@ -13,5 +13,6 @@ namespace Eternal.Models
 
         [Required, ClientBirthDate, DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }
+
     }
 }

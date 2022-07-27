@@ -1,11 +1,11 @@
 ﻿using Eternal.Business;
 using Eternal.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Eternal.Api.Controllers
 {
-    [ApiController]
-    [Route("client")]
+    [ApiController, Route("client")]
     public class ClientController : ControllerBase
     {
         private readonly IClientService _clientService;

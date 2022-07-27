@@ -11,6 +11,7 @@ namespace Eternal.Data
         public DbSet<Client>? Clients { get; set; }
         public DbSet<Contract>? Contracts { get; set; }
         public DbSet<Instalment>? Instalments { get; set; }
+        public DbSet<ContractTemplate>? ContractTemplates { get; set; }
 
 
         public EternalDbContext(IConfiguration configuration)
