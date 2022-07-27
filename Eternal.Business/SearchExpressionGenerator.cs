@@ -26,5 +26,15 @@ namespace Eternal.Business
             var searchLower = search.ToLower();
             return c => c.Id.ToString().Contains(searchLower);
         }
+
+        public static Expression<Func<ContractTemplate, bool>>? ForContractTemplate(string? search)
+        {
+            if (string.IsNullOrEmpty(search))
+            {
+                return c => true;
+            }
+            var searchLower = search.ToLower();
+            return c => c.Id.ToString().Contains(searchLower);
+        }
     }
 }

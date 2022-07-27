@@ -16,5 +16,8 @@ namespace Eternal.Models
 
         [Required, Range(1, int.MaxValue)]
         public int ClientId { get; set; }
+
+        [Required, Range(1, int.MaxValue)]
+        public int ContractTemplateId { get; set; }
     }
 }

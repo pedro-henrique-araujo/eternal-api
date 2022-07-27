@@ -4,8 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Eternal.Api.Controllers
 {
-    [ApiController]
-    [Route("contract")]
+    [ApiController, Route("contract")]
     public class ContractController : ControllerBase
     {
         private readonly IContractService _contractService;
