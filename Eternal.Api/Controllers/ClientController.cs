@@ -1,6 +1,5 @@
 ﻿using Eternal.Business;
 using Eternal.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Eternal.Api.Controllers
@@ -24,7 +23,7 @@ namespace Eternal.Api.Controllers
 
         [HttpGet]
         public async Task<ActionResult<Pagination<ClientPaginationDto>>> GetPaginationAsync(
-            [FromQuery] int? page = null, 
+            [FromQuery] int? page = null,
             [FromQuery] string? search = null)
         {
             var output = await _clientService.GetPaginationAsync(page, search);
