@@ -89,7 +89,9 @@ namespace Eternal.Business
                         signaturesTable.AddCell(signatureCell);
                     }
 
-                    document.Add(new Phrase(GetContractText(), new Font(Font.FontFamily.HELVETICA, 8)));
+                    var contractText = contract?.ContractTemplate?.Text;
+
+                    document.Add(new Phrase(contractText, new Font(Font.FontFamily.HELVETICA, 8)));
                     document.Add(new Phrase("\n"));
                     document.Add(clientTable);
                     document.Add(new Phrase("\n"));
