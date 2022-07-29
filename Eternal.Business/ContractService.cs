@@ -23,7 +23,7 @@ namespace Eternal.Business
         public async Task<ContractDetailDto?> GetByIdAsync(int id)
         {
             var repository = _unitOfWork.GetRepository<IRepository<Contract>>();
-            var contract = await repository.GetByPredicateAsync(c => c.Id == id, c => c);
+            var contract = await repository.GetAsync(c => c.Id == id, c => c);
             return contract?.Adapt<ContractDetailDto>();
         }
 
@@ -67,7 +67,7 @@ namespace Eternal.Business
         public async Task<byte[]?> GetInstalmentsPdf(int id)
         {
             var repository = _unitOfWork.GetRepository<IRepository<Contract>>();
-            var contract = await repository.GetByPredicateAsync(
+            var contract = await repository.GetAsync(
                 c => c.Id == id, 
                 c => c.Include(c => c.Instalments)
                     .Include(c => c.Client));
@@ -78,7 +78,7 @@ namespace Eternal.Business
         public async Task<byte[]?> GetContractPdf(int id)
         {
             var repository = _unitOfWork.GetRepository<IRepository<Contract>>();
-            var contract = await repository.GetByPredicateAsync(
+            var contract = await repository.GetAsync(
                 c => c.Id == id,
                 c => c.Include(c => c.Client)
                     .Include(c => c.ContractTemplate));

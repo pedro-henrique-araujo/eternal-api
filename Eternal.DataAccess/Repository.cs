@@ -20,7 +20,7 @@ namespace Eternal.DataAccess
             return entity;
         }
 
-        public async Task<T?> GetByPredicateAsync(
+        public async Task<T?> GetAsync(
             Expression<Func<T, bool>> wherePredicate, 
             Func<IQueryable<T>, IQueryable<T>> queryCustomization)
         {
@@ -30,8 +30,22 @@ namespace Eternal.DataAccess
             return entity;
         }
 
-        public async Task<List<TReturn>> GetAllAsync<TReturn>(Expression<Func<T, TReturn>> selectExpression)
+        public async Task<List<TReturn>> GetListAsync<TReturn>(Expression<Func<T, TReturn>> selectExpression)
         {
+            var list = await _dbContext.Set<T>()
+                .Select(selectExpression)
+                .ToListAsync();
+
+            return list;
+        }
+
+        public async Task<List<TReturn>> GetListAsync<TReturn>(Expression<Func<T, TReturn>>? selectExpression = null)
+        {
+            var queryable = _dbContext.Set<T>().AsQueryable();
+            if (selectExpression is not null)
+            {
+                queryable = queryable.Select(selectExpression);
+            }
             var list = await _dbContext.Set<T>()
                 .Select(selectExpression)
                 .ToListAsync();

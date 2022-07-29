@@ -36,7 +36,7 @@ namespace Eternal.Business
         public async Task<List<ContractTemplateOptionDto>> GetOptionsAsync()
         {
             var repository = _unitOfWork.GetRepository<IRepository<ContractTemplate>>();
-            var list = await repository.GetAllAsync(c => new ContractTemplateOptionDto
+            var list = await repository.GetListAsync(c => new ContractTemplateOptionDto
             {
                 Id = c.Id,
                 Name = c.Name

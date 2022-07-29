@@ -4,11 +4,11 @@ namespace Eternal.Business
 {
     public interface IDependentService
     {
-        Task<List<DependentDetailDto>> GetByClientIdAsync(int id);
-        Task<DependentDetailDto> GetByIdAsync(int id);
-        Task<List<DependentOptionDto>> GetOptionsAsync();
-        Task<DependentDetailDto> CreateAsync(DependentCreationDto creationDto);
-        Task<ClientDetailDto> UpdateAsync(DependentUpdatingDto updatingDto);
+        Task<List<DependentDetailDto>?> GetByClientIdAsync(int id);
+        Task<DependentDetailDto?> GetByIdAsync(int id);
+        Task<List<DependentOptionDto>?> GetOptionsAsync();
+        Task<DependentDetailDto?> CreateAsync(DependentCreationDto creationDto);
+        Task<ClientDetailDto?> UpdateAsync(DependentUpdatingDto updatingDto);
         Task DeleteAsync(int id);
     }
 }
