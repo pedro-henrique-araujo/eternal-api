@@ -39,19 +39,6 @@ namespace Eternal.DataAccess
             return list;
         }
 
-        public async Task<List<TReturn>> GetListAsync<TReturn>(Expression<Func<T, TReturn>>? selectExpression = null)
-        {
-            var queryable = _dbContext.Set<T>().AsQueryable();
-            if (selectExpression is not null)
-            {
-                queryable = queryable.Select(selectExpression);
-            }
-            var list = await _dbContext.Set<T>()
-                .Select(selectExpression)
-                .ToListAsync();
-
-            return list;
-        }
 
         public async Task<Pagination<T>> GetPaginationAsync(
             int? page = null,
