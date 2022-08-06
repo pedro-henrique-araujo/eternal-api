@@ -4,6 +4,7 @@ using Eternal.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Eternal.Data.Migrations
 {
     [DbContext(typeof(EternalDbContext))]
-    partial class EternalDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220806003453_AlterTableClientAddFields")]
+    partial class AlterTableClientAddFields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,9 +48,6 @@ namespace Eternal.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Neighborhood")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Rg")
@@ -118,26 +117,17 @@ namespace Eternal.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime>("BirthDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("ClientId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Cpf")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Rg")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ClientId");
 
-                    b.ToTable("Dependents");
+                    b.ToTable("Depdendents");
                 });
 
             modelBuilder.Entity("Eternal.Models.Instalment", b =>
@@ -189,7 +179,7 @@ namespace Eternal.Data.Migrations
             modelBuilder.Entity("Eternal.Models.Dependent", b =>
                 {
                     b.HasOne("Eternal.Models.Client", "Client")
-                        .WithMany("Dependents")
+                        .WithMany()
                         .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -206,11 +196,6 @@ namespace Eternal.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Contract");
-                });
-
-            modelBuilder.Entity("Eternal.Models.Client", b =>
-                {
-                    b.Navigation("Dependents");
                 });
 
             modelBuilder.Entity("Eternal.Models.Contract", b =>

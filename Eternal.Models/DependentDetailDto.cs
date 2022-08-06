@@ -1,4 +1,6 @@
-﻿namespace Eternal.Models
+﻿using System;
+
+namespace Eternal.Models
 {
     public class DependentDetailDto
     {
@@ -7,5 +9,9 @@
         public string? Name { get; set; }
 
         public int ClientId { get; set; }
+
+        public DateTime BirthDate { get; set; }
+        public string? Cpf { get; set; }
+        public string? Rg { get; set; }
     }
 }

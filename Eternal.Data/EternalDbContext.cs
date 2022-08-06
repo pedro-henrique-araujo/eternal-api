@@ -9,11 +9,11 @@ namespace Eternal.Data
         private readonly IConfiguration _configuration;
 
         public DbSet<Client>? Clients { get; set; }
+        public DbSet<Dependent>? Dependents { get; set; }
         public DbSet<Contract>? Contracts { get; set; }
         public DbSet<Instalment>? Instalments { get; set; }
         public DbSet<ContractTemplate>? ContractTemplates { get; set; }
 
-        public DbSet<Dependent>? Depdendents { get; set; }
 
         public EternalDbContext(IConfiguration configuration)
         {
