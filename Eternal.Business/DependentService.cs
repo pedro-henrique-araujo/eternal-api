@@ -29,7 +29,7 @@ namespace Eternal.Business
         public async Task<List<DependentDetailDto>?> GetByClientIdAsync(int id)
         {
             var repository = _unitOfWork.GetRepository<IRepository<Dependent>>();
-            var list = await repository.GetAsync(d => d.ClientId == id, d => d);
+            var list = await repository.GetListAsync(d => d.ClientId == id);
             return list?.Adapt<List<DependentDetailDto>>();
         }
 
@@ -48,14 +48,15 @@ namespace Eternal.Business
                 Id = c.Id,
                 Name = c.Name
             });
+
             return list;
         }
 
-        public async Task<ClientDetailDto?> UpdateAsync(DependentUpdatingDto updatingDto)
+        public async Task<DependentDetailDto?> UpdateAsync(DependentUpdatingDto updatingDto)
         {
-            var repository = _unitOfWork.GetRepository<IRepository<Client>>();
-            var entity = await repository.UpdateAsync(updatingDto.Adapt<Client>());
-            return entity?.Adapt<ClientDetailDto>();
+            var repository = _unitOfWork.GetRepository<IRepository<Dependent>>();
+            var entity = await repository.UpdateAsync(updatingDto.Adapt<Dependent>());
+            return entity?.Adapt<DependentDetailDto>();
         }
     }
 }

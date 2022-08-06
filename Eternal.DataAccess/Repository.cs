@@ -39,6 +39,15 @@ namespace Eternal.DataAccess
             return list;
         }
 
+        public async Task<List<T>> GetListAsync(Expression<Func<T, bool>> wherePredicate)
+        {
+            var list = await _dbContext.Set<T>()
+               .Where(wherePredicate)
+               .ToListAsync();
+
+            return list;
+        }
+
 
         public async Task<Pagination<T>> GetPaginationAsync(
             int? page = null,

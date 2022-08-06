@@ -8,7 +8,7 @@ namespace Eternal.Business
         Task<DependentDetailDto?> GetByIdAsync(int id);
         Task<List<DependentOptionDto>?> GetOptionsAsync();
         Task<DependentDetailDto?> CreateAsync(DependentCreationDto creationDto);
-        Task<ClientDetailDto?> UpdateAsync(DependentUpdatingDto updatingDto);
+        Task<DependentDetailDto?> UpdateAsync(DependentUpdatingDto updatingDto);
         Task DeleteAsync(int id);
     }
 }
