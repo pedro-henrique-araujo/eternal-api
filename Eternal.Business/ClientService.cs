@@ -55,7 +55,7 @@ namespace Eternal.Business
         public async Task<List<ClientOptionDto>> GetOptionsAsync()
         {
             var repository = _unitOfWork.GetRepository<IRepository<Client>>();
-            var list = await repository.GetAllAsync(c => new ClientOptionDto 
+            var list = await repository.GetListAsync(c => new ClientOptionDto 
             {  
                 Id = c.Id, 
                 Name = c.Name 

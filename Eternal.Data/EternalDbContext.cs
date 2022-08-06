@@ -13,6 +13,7 @@ namespace Eternal.Data
         public DbSet<Instalment>? Instalments { get; set; }
         public DbSet<ContractTemplate>? ContractTemplates { get; set; }
 
+        public DbSet<Dependent>? Depdendents { get; set; }
 
         public EternalDbContext(IConfiguration configuration)
         {

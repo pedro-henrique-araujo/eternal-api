@@ -20,7 +20,7 @@ namespace Eternal.DataAccess
             return entity;
         }
 
-        public async Task<T?> GetByPredicateAsync(
+        public async Task<T?> GetAsync(
             Expression<Func<T, bool>> wherePredicate, 
             Func<IQueryable<T>, IQueryable<T>> queryCustomization)
         {
@@ -30,7 +30,7 @@ namespace Eternal.DataAccess
             return entity;
         }
 
-        public async Task<List<TReturn>> GetAllAsync<TReturn>(Expression<Func<T, TReturn>> selectExpression)
+        public async Task<List<TReturn>> GetListAsync<TReturn>(Expression<Func<T, TReturn>> selectExpression)
         {
             var list = await _dbContext.Set<T>()
                 .Select(selectExpression)
@@ -38,6 +38,16 @@ namespace Eternal.DataAccess
 
             return list;
         }
+
+        public async Task<List<T>> GetListAsync(Expression<Func<T, bool>> wherePredicate)
+        {
+            var list = await _dbContext.Set<T>()
+               .Where(wherePredicate)
+               .ToListAsync();
+
+            return list;
+        }
+
 
         public async Task<Pagination<T>> GetPaginationAsync(
             int? page = null,
