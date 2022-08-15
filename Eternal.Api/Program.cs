@@ -3,7 +3,6 @@ using Eternal.Business;
 using Eternal.Data;
 using Eternal.DataAccess;
 using Eternal.Models;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
