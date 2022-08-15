@@ -23,7 +23,7 @@ namespace Eternal.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var connectionString = _configuration.GetConnectionString("Eternal");
-            optionsBuilder.UseSqlServer(connectionString);
+            optionsBuilder.UseSqlite(connectionString);
         }
     }
 }
