@@ -5,7 +5,6 @@ using Eternal.DataAccess;
 using Eternal.Models;
 
 var builder = WebApplication.CreateBuilder(args);
-
 // Add services to the container.
 
 builder.Services.AddControllers(options =>
@@ -35,6 +34,13 @@ builder.Services.AddScoped<IPdfService, PdfService>();
 builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var dataContext = scope.ServiceProvider.GetRequiredService<EternalDbContext>();
+    var database = dataContext.Database;
+    database.EnsureCreated();
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
